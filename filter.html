@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <p> hello</p>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+  <select id='selected' class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+    <option value="">select</option>
+    <option value="highest">Highest first</option>
+    <option value="lowest">Lowest First</option>
+
+  </select>
+
+
+
+  <p id="reviews"></p>
+  <button class="btn" style="background-color: aqua;" onclick="show()"> filter</button>
+
+  <script type="text/javascript">
+    function show() {
+
+      var x = document.getElementById('selected').value;
+      if (x == "highest") {
+        fetch('./reviews.json')
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (reviews) {
+            //  for (var i=0;i<reviews.length;i++)
+            //  {  if(reviews[i].rating>='3')
+            //      {document.getElementById("reviews").innerHTML+= 
+            //      reviews[i].reviewText  + "<br>"
+            //     }
+            //     reviews.sort(function (obj1, obj2)
+            //     {
+            //       return obj1.rating -obj2.rating;
+            //     })
+
+
+            //  }  ==> ne funkcionira
+
+            for (var i = 0; i < reviews.length; i++) {
+                   
+              if (reviews[i].rating == '5' &&reviews[i].rating>='3') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '4'&& reviews[i].rating>='3') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '3' && reviews[i].rating>='3') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '1' &&reviews[i].rating>='3') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+           
+
+
+            
+           
+            
+          })
+
+
+          .catch(function (err) {
+            console.log(err)
+          })
+        localStorage.clear();
+    
+      }
+     
+      else if (x == "lowest") {
+
+        fetch('./reviews.json')
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (reviews) {
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '1' && reviews[i]) {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '2') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '3') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '4') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '5') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating == '0') {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText+ "<br>"
+              }
+
+
+            }
+            for (var i = 0; i < reviews.length; i++) {
+              if (reviews[i].rating < reviews[i].rating) {
+                document.getElementById("reviews").innerHTML +=
+                reviews[i].reviewText
+              }
+
+
+            }
+          })
+
+
+          .catch(function (err) {
+            console.log(err)
+          })
+      }
+
+    }
+
+
+  </script>
+
+
+</body>
+
+</html>
